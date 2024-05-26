@@ -1,0 +1,23 @@
+.item {
+    padding: 10px;
+    text-align: left;
+    border: 2px solid;
+    display: flex;
+}
+.itemInfo {
+    flex: 1;
+}
+
+.todoTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+.todoDesc {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+button {
+    font-size: 16px;
+}
+
