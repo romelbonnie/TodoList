@@ -8,6 +8,8 @@ const baseUrl = "http://localhost:5000";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [todoTitle, setTodoTitle] = useState("");
+  const [todoDesc, setTodoDesc] = useState("");
 
   const getTodos = () => {
     const options = {
@@ -23,6 +25,34 @@ function App() {
         console.log(res);
         setTodos(res.todos);
       });
+  };
+
+  const handleAddTodo = (title, description) => {
+    if (todoTitle && todoTitle !== "") {
+      const url = `${baseUrl}/todo/create`;
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          description,
+        }),
+      };
+
+      fetch(url, options)
+        .then((res) => res.json())
+        .then((res) => {
+          getTodos();
+          alert("Todo has been created!");
+        });
+    }
+  };
+
+  const onSubmitAddTodo = (event) => {
+    handleAddTodo(todoTitle, todoDesc);
+    setTodoTitle("");
+    setTodoDesc("");
+    event.preventDefault();
   };
 
   const renderTodos = (list) => {
@@ -44,19 +74,23 @@ function App() {
 
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
       <h1 className="title">TODO List</h1>
-      <div className="container">{renderTodos(todos)}</div>
-      {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      {/* </header> */}
+      <div className="container">
+        <form className="addForm" onSubmit={onSubmitAddTodo}>
+          <span className="inputLabel">Title:</span>
+          <input
+            value={todoTitle}
+            onChange={(e) => setTodoTitle(e.target.value)}
+          />
+          <span className="inputLabel">Description:</span>
+          <input
+            value={todoDesc}
+            onChange={(e) => setTodoDesc(e.target.value)}
+          />
+          <input type="submit" className="addBtn" value="Add Todo" />
+        </form>
+        {renderTodos(todos)}
+      </div>
     </div>
   );
 }

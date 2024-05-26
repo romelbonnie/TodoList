@@ -51,3 +51,15 @@
   margin: auto;
   padding: 10px;
 }
+
+.addForm {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.addBtn {
+  margin-left: 10px;
+}
+.inputLabel {
+  margin-left: 10px;
+}

@@ -3,6 +3,7 @@
     text-align: left;
     border: 2px solid;
     display: flex;
+    margin-bottom: 10px;
 }
 .itemInfo {
     flex: 1;
