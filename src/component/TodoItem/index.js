@@ -1,9 +1,15 @@
 import "./style.css";
 
-const TodoItem = ({ data, onEdit }) => {
+const TodoItem = ({ data, onEdit, onRemove }) => {
   const handleOnEdit = (event) => {
     onEdit(data);
     // event.preventDefault();
+  };
+
+  const handleOnRemove = () => {
+    if (window.confirm("Are you sure you to remove this todo item?")) {
+      onRemove(data._id);
+    }
   };
 
   return (
@@ -13,7 +19,7 @@ const TodoItem = ({ data, onEdit }) => {
         <div className="todoDesc">{data.description}</div>
       </div>
       <button onClick={handleOnEdit}>Edit</button>
-      <button>Delete</button>
+      <button onClick={handleOnRemove}>Delete</button>
     </div>
   );
 };

@@ -90,12 +90,39 @@ function App() {
       });
   };
 
+  const onRemoveTodo = (id) => {
+    const url = `${baseUrl}/todo/remove`;
+    const options = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id,
+      }),
+    };
+
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((res) => {
+        getTodos();
+        if (res.status !== 200) {
+          alert(res.message);
+        } else {
+          alert("Todo has been removed!");
+        }
+      });
+  };
+
   const renderTodos = (list) => {
     console.log("TODO: ", list);
     return list && list.length > 0 ? (
       <>
         {list.map((todo) => (
-          <TodoItem key={todo._id} data={todo} onEdit={onOpenEditForm} />
+          <TodoItem
+            key={todo._id}
+            data={todo}
+            onEdit={onOpenEditForm}
+            onRemove={onRemoveTodo}
+          />
         ))}
       </>
     ) : (
