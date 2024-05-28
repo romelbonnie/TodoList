@@ -5,7 +5,7 @@ import TodoItem from "./component/TodoItem";
 import EditForm from "./component/EditForm";
 import "./App.css";
 
-const baseUrl = "http://localhost:5000";
+const apiBaseUrl = process.env.BASE_URL || "http://localhost:5000";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -19,7 +19,7 @@ function App() {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     };
-    const url = `${baseUrl}/todo`;
+    const url = `${apiBaseUrl}/todo`;
     console.log("URL: ", url);
 
     fetch(url, options)
@@ -32,7 +32,7 @@ function App() {
 
   const handleAddTodo = (title, description) => {
     if (todoTitle && todoTitle !== "") {
-      const url = `${baseUrl}/todo/create`;
+      const url = `${apiBaseUrl}/todo/create`;
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -67,7 +67,7 @@ function App() {
   };
 
   const onSubmitEditTodo = ({ title, description, id }) => {
-    const url = `${baseUrl}/todo/update`;
+    const url = `${apiBaseUrl}/todo/update`;
     const options = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ function App() {
   };
 
   const onRemoveTodo = (id) => {
-    const url = `${baseUrl}/todo/remove`;
+    const url = `${apiBaseUrl}/todo/remove`;
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
