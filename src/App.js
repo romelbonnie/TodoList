@@ -5,7 +5,7 @@ import TodoItem from "./component/TodoItem";
 import EditForm from "./component/EditForm";
 import "./App.css";
 
-const apiBaseUrl = process.env.BASE_URL || "http://localhost:5000";
+const apiBaseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
 
 function App() {
   const [todos, setTodos] = useState([]);
