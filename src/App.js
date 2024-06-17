@@ -137,7 +137,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <h1 className="title">TODO List</h1>
+        <h1 className="title">TODO List (Staging)</h1>
         <div className="container">
           <form className="addForm" onSubmit={onSubmitAddTodo}>
             <span className="inputLabel">Title:</span>
